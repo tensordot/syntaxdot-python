@@ -1,0 +1,50 @@
+name: Python Bindings
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Build and test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+
+      - name: rustfmt
+        uses: actions-rs/cargo@v1
+        with:
+          toolchain: stable
+          command: fmt
+          args: -- --check
+
+      - name: Lint with Clippy
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: -- -D warnings
+
+      - name: Install Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+          architecture: "x64"
+
+      - name: Set up Python venv
+        run: |
+          python -m venv .env
+          source .env/bin/activate
+
+      - name: Build extension
+        run: |
+          pip install setuptools_rust
+          python setup.py develop
