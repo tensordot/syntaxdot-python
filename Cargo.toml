@@ -5,6 +5,15 @@ authors = ["Daniël de Kok <me@danieldk.eu>"]
 edition = "2018"
 
 [dependencies]
+conllu = "0.5"
+serde_yaml = "0.8"
+syntaxdot = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
+syntaxdot-encoders = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
+syntaxdot-tch-ext = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
+syntaxdot-tokenizers = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
+syntaxdot-transformers = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
+tch = "0.3"
+thiserror = "1"
 
 [lib]
 name = "syntaxdot"
@@ -13,3 +22,6 @@ crate-type = ["cdylib"]
 [dependencies.pyo3]
 version = "0.13.1"
 features = ["extension-module"]
+
+[patch.crates-io]
+tch = { git = "https://github.com/LaurentMazare/tch-rs.git" }
