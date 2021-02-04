@@ -1,12 +1,13 @@
+use std::collections::BTreeMap;
+use std::ops::Deref;
 use std::sync::Arc;
 
-use conllu::graph::DepTriple;
+use conllu::graph::{DepTriple, Node};
 use conllu::token::Token;
+use itertools::Itertools;
 use pyo3::exceptions::PyIndexError;
 use pyo3::prelude::*;
 use pyo3::{PyIterProtocol, PyObjectProtocol, PySequenceProtocol};
-use std::collections::BTreeMap;
-use std::ops::Deref;
 use syntaxdot_tokenizers::SentenceWithPieces;
 
 #[pyclass(name = "Sentence")]
@@ -79,6 +80,21 @@ impl PyIterProtocol for PySentenceIter {
         } else {
             None
         }
+    }
+}
+
+#[pyproto]
+impl PyObjectProtocol<'_> for PySentence {
+    fn __repr__(&self) -> PyResult<String> {
+        let forms = self
+            .inner
+            .sentence
+            .iter()
+            .filter_map(Node::token)
+            .map(Token::form)
+            .map(|form| format!("\"{}\"", form))
+            .join(", ");
+        Ok(format!("Sentence([{}])", forms))
     }
 }
 
