@@ -24,6 +24,7 @@
         buildInputs = [
           openssl
           (python3.withPackages (ps: with ps; [
+            requests
             setuptools-rust
           ]))
         ];
