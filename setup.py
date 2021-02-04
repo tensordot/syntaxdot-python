@@ -6,5 +6,6 @@ setup(
     version="0.3.0-beta.0",
     rust_extensions=[RustExtension("syntaxdot.syntaxdot", binding=Binding.PyO3)],
     packages=["syntaxdot"],
+    install_requires=["requests"],
     zip_safe=False,
 )
