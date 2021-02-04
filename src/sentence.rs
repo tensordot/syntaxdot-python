@@ -116,7 +116,8 @@ impl PyToken {
 
 #[pymethods]
 impl PyToken {
-    fn form(&self) -> &str {
+    #[getter]
+    fn get_form(&self) -> &str {
         self.token().form()
     }
 
@@ -128,6 +129,16 @@ impl PyToken {
     #[getter]
     fn get_head(&self) -> Option<usize> {
         self.dep_triple().map(|triple| triple.head())
+    }
+
+    #[getter]
+    fn get_lemma(&self) -> Option<&str> {
+        self.token().lemma()
+    }
+
+    #[getter]
+    fn get_misc(&self) -> BTreeMap<String, Option<String>> {
+        self.token().misc().deref().to_owned()
     }
 
     #[getter]
