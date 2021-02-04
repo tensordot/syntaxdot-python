@@ -6,6 +6,7 @@ edition = "2018"
 
 [dependencies]
 conllu = "0.5"
+itertools = "0.8"
 serde_yaml = "0.8"
 syntaxdot = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
 syntaxdot-encoders = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }

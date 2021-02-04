@@ -879,6 +879,7 @@ name = "syntaxdot-python"
 version = "0.1.0"
 dependencies = [
  "conllu",
+ "itertools 0.8.2",
  "pyo3",
  "serde_yaml",
  "syntaxdot",
