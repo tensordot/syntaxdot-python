@@ -1,1 +1,1 @@
-from .syntaxdot import Annotator
+from .syntaxdot import Annotator, syntaxdot_version
