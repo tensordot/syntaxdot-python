@@ -3,8 +3,6 @@ use std::io;
 use std::io::BufReader;
 use std::path::Path;
 
-use conllu::graph::Sentence;
-use conllu::token::Token;
 use pyo3::exceptions::{PyIOError, PyRuntimeError};
 use pyo3::prelude::*;
 use pyo3::PyObjectProtocol;
@@ -20,6 +18,8 @@ use syntaxdot_transformers::TransformerError;
 use tch::nn::VarStore;
 use tch::Device;
 use thiserror::Error;
+use udgraph::graph::Sentence;
+use udgraph::token::Token;
 
 use crate::sentence::PySentence;
 
@@ -117,6 +117,7 @@ impl PyAnnotator {
                 .map(ImmutableDependencyEncoder::n_relations)
                 .unwrap_or(0),
             &encoders,
+            config.model.pooler,
             0.0,
             config.model.position_embeddings.clone(),
         )

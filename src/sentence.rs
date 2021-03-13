@@ -2,13 +2,13 @@ use std::collections::BTreeMap;
 use std::ops::Deref;
 use std::sync::Arc;
 
-use conllu::graph::{DepTriple, Node};
-use conllu::token::Token;
 use itertools::Itertools;
 use pyo3::exceptions::PyIndexError;
 use pyo3::prelude::*;
 use pyo3::{PyIterProtocol, PyObjectProtocol, PySequenceProtocol};
 use syntaxdot_tokenizers::SentenceWithPieces;
+use udgraph::graph::{DepTriple, Node};
+use udgraph::token::Token;
 
 #[pyclass(name = "Sentence")]
 pub struct PySentence {

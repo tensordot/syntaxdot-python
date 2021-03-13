@@ -5,7 +5,7 @@ authors = ["Daniël de Kok <me@danieldk.eu>"]
 edition = "2018"
 
 [dependencies]
-conllu = "0.5"
+conllu = "0.6"
 itertools = "0.8"
 serde_yaml = "0.8"
 syntaxdot = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
@@ -13,8 +13,9 @@ syntaxdot-encoders = { git = "https://github.com/tensordot/syntaxdot.git", branc
 syntaxdot-tch-ext = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
 syntaxdot-tokenizers = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
 syntaxdot-transformers = { git = "https://github.com/tensordot/syntaxdot.git", branch = "main" }
-tch = "0.3"
+tch = "0.4"
 thiserror = "1"
+udgraph = "0.6"
 
 [lib]
 name = "syntaxdot"
